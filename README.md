@@ -1,6 +1,6 @@
 # File uploads using S3 presigned URLs and Lambda
 
-This example application shows how to upload image to S3 directly from front-end application using signed URLs, API Gateway and Lambda.
+This Serverless example application shows how to upload image to S3 using signed URLs, API Gateway and Lambda.
 
 The approach allows you to upload directly to Amazon S3 using a predefined URL. This offloads all the bandwidth and compute requirements away from your application, and instead relies on the massive scalability of S3.
 

@@ -1,16 +1,17 @@
-service: uploadless
+service: upload-to-s3-with-signedUrl
 
 frameworkVersion: "2"
 
 # Specify your bucket name here
 custom:
-  bucketName: #<<<<your-bucket-name>>>>  ### define the unique bucket name to be created
+  bucketName: ### define the unique bucket name to be created - just lowercase
   stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
 
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: dev
+  stage: dev # change the stage if you want
   region: us-east-1 # change the region if you want
   lambdaHashingVersion: 20201221
   stackName: ${self:custom.bucketName} 
@@ -41,13 +42,13 @@ functions: # lambda function
       UploadBucket: ${self:custom.bucketName}
     events:
       - http: # create a api gateway to trigger de lambda function
-          path: "/${self:custom.bucketName}"
+          path: /${self:custom.bucketName}
           method: get
           cors: true
 
 resources:
   Resources:
-    UploadlessBucket:  # create a s3 bucket
+    UploadBucket:  # create a s3 bucket
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.bucketName}
@@ -64,11 +65,11 @@ resources:
                 - DELETE
               AllowedOrigins:
                 - "*"
-    UploadlessBucketPolicy: # define policy to bucket and objects
+    UploadBucketPolicy: # define policy to bucket and objects
       Type: AWS::S3::BucketPolicy
       Properties:
         Bucket:
-          Ref: UploadlessBucket
+          Ref: UploadBucket
         PolicyDocument:
           Statement:
             - Effect: "Allow"
@@ -80,5 +81,5 @@ resources:
                 Fn::Join:
                   - ""
                   - - "arn:aws:s3:::"
-                    - "Ref": UploadlessBucket
+                    - "Ref": UploadBucket
                     - "/*"

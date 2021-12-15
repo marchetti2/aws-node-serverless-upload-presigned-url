@@ -6,6 +6,7 @@
 
 # misc
 /frontend/.DS_Store
+.DS_Store
 /frontend/.env
 
 /frontend/npm-debug.log*

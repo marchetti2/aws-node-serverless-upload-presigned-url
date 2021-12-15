@@ -2,9 +2,7 @@ const AWS = require('aws-sdk')
 AWS.config.update({ region: process.env.AWS_REGION })
 const s3 = new AWS.S3()
 
-// Main Lambda entry point
 exports.handler = async () => await getUploadURL()
-
 
 const getUploadURL = async function() {
   const randomID = parseInt(Math.random() * 10000000)
@@ -17,8 +15,7 @@ const getUploadURL = async function() {
     ContentType: 'image/jpeg',
   }
   
-  return new Promise((resolve, reject) => {
-    // Get signed URL
+  return new Promise((resolve, _) => {
     resolve({
       statusCode: 200,
       isBase64Encoded: false,

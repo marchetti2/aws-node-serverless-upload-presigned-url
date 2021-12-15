@@ -24,7 +24,7 @@ Open `serverless.yml` and edit:
 ```yaml
   custom:
     bucketName:  # your-bucket-name
-	...
+    ...
 ```
 - If you prefer to use a different region or stage, change these:
 ```yaml
@@ -32,7 +32,7 @@ Open `serverless.yml` and edit:
     ...
     stage:  # default is 'dev'
     region:  # default is 'us-east-1'
-	...
+    ...
 ```
 
 ### Credentials

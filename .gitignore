@@ -1,0 +1,19 @@
+# package directories
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.js
+
+# misc
+/frontend/.DS_Store
+/frontend/.env
+
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless

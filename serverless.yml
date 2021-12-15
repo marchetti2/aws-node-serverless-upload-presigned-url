@@ -1,0 +1,84 @@
+service: uploadless
+
+frameworkVersion: "2"
+
+# Specify your bucket name here
+custom:
+  bucketName: #<<<<your-bucket-name>>>>  ### define the unique bucket name to be created
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1 # change the region if you want
+  lambdaHashingVersion: 20201221
+  stackName: ${self:custom.bucketName} 
+  apiName: ${self:custom.bucketName} 
+  endpointType: regional
+  memorySize: 128
+  iam: #permisions for lambda access the s3 actions
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:PutObject
+            - s3:PutObjectAcl
+          Resource:
+            - arn:aws:s3:::${self:custom.bucketName}/*
+          Sid: AllowPublic
+	
+package: #exclude frontend folder and files on deploy
+  patterns:
+    - '!frontend/**'
+
+functions: # lambda function
+  upload:
+    handler: index.handler
+    name: ${self:custom.bucketName}
+    environment:
+      UploadBucket: ${self:custom.bucketName}
+    events:
+      - http: # create a api gateway to trigger de lambda function
+          path: "/${self:custom.bucketName}"
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    UploadlessBucket:  # create a s3 bucket
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucketName}
+        AccessControl: PublicRead
+        CorsConfiguration: # define cors
+          CorsRules:
+            - AllowedHeaders:
+                - "*"
+              AllowedMethods:
+                - GET
+                - HEAD
+                - PUT
+                - POST
+                - DELETE
+              AllowedOrigins:
+                - "*"
+    UploadlessBucketPolicy: # define policy to bucket and objects
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: UploadlessBucket
+        PolicyDocument:
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - s3:GetObject # defined public access only to get the objects on the bucket.
+              Principal: "*"
+              Sid: PublicGetObject
+              Resource:
+                Fn::Join:
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - "Ref": UploadlessBucket
+                    - "/*"

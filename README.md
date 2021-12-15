@@ -1,6 +1,6 @@
 # File uploads using S3 presigned URLs and Lambda
 
-This Serverless example application shows how to upload image to S3 using signed URLs, API Gateway and Lambda.
+This example application shows how to upload image to S3 directly from front-end application using signed URLs, API Gateway and Lambda.
 
 The approach allows you to upload directly to Amazon S3 using a predefined URL. This offloads all the bandwidth and compute requirements away from your application, and instead relies on the massive scalability of S3.
 
@@ -24,7 +24,7 @@ Open `serverless.yml` and edit:
 ```yaml
   custom:
     bucketName:  # your-bucket-name
-    ...
+	...
 ```
 - If you prefer to use a different region or stage, change these:
 ```yaml
@@ -32,7 +32,7 @@ Open `serverless.yml` and edit:
     ...
     stage:  # default is 'dev'
     region:  # default is 'us-east-1'
-    ...
+	...
 ```
 
 ### Credentials
@@ -82,8 +82,7 @@ layers:
 ```
 The upload URL is the **'endpoints'** output. For example - https://t9oh8r2yx4.execute-api.us-east-1.amazonaws.com/dev/uploadimgless
 
-### Testing with the frontend application
-
+###Testing with the frontend application
 The frontend code is saved in the frontend subdirectory.
 
 From the .env.example file at the root of the frontend subdirectory, create another file called .env using the same structure and set the upload Url(endpoint from the deployment serverless).

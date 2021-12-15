@@ -1,5 +1,8 @@
+import "./App.css"
+
 let img
 let uploadURL
+
 
 function App () {
 
@@ -38,9 +41,65 @@ function App () {
 
   return (
     <>
-    <div style={{display:"flex", flexDirection:"row", height:"100vh", width:"100vw"}}>
-      <div style={{margin:"auto", height:"300px", width:"300px", border:"1px solid #333"}}>
-      <label htmlFor="avatar">Choose a profile picture:</label>
+    <div className="Container">
+      <div className="Form">
+      <label htmlFor="avatar">S3 Uploader Test - Select an image</label>
+
+      { img ? 
+        <div className="File-container">
+          <div
+            pos="relative"
+            h="full"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <img
+                w="218px"
+                h="218px"
+                borderRadius="109px"
+                src={localAvatarUrl}
+                alt="Uploaded photo"
+                objectFit="cover"
+              />
+          </div>
+        </div>
+        : 
+        <div className="File-container">
+
+         {uploadURL ? (
+                <p as="span" pt={2} textAlign="center">
+                  Enviando...
+                </p>
+            ) : (
+              <div
+                w="218px"
+                h="218px"
+                borderRadius="109px"
+                pos="relative"
+                alignItems="center"
+                justifyContent="center"
+              >
+
+                <div
+                  w="218px"
+                  h="218px"
+                  borderRadius="109px"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexDir="column"
+                >
+                  {/* <Icon as={FiPlus} w={14} h={14} color={colorMode === "dark" ? "dark.600" : "gray.700"} /> */}
+                  <p as="span" pt={2} textAlign="center">
+                    Adicione sua imagem
+                  </p>
+                </div>
+              </div>
+            )}
+
+
+
+        </div>
+      }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
       <input
       id="avatar"

@@ -82,7 +82,8 @@ layers:
 ```
 The upload URL is the **'endpoints'** output. For example - https://t9oh8r2yx4.execute-api.us-east-1.amazonaws.com/dev/uploadimgless
 
-###Testing with the frontend application
+### Testing with the frontend application
+
 The frontend code is saved in the frontend subdirectory.
 
 From the .env.example file at the root of the frontend subdirectory, create another file called .env using the same structure and set the upload Url(endpoint from the deployment serverless).

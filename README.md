@@ -2,7 +2,9 @@
 
 This Serverless example application shows how to upload image to S3 using signed URLs, API Gateway and Lambda.
 
-The approach allows you to upload directly to Amazon S3 using a predefined URL. This offloads all the bandwidth and compute requirements away from your application, and instead relies on the massive scalability of S3.
+This approach allows you to upload directly to Amazon S3 using a predefined URL. This offloads all the bandwidth and compute requirements away from your application, and instead relies on the massive scalability of S3.
+
+Project structure:
 
 ```bash
 .
@@ -14,8 +16,7 @@ The approach allows you to upload directly to Amazon S3 using a predefined URL. 
 ### Requirements
 * [Node.js](https://nodejs.org/en/)
 * Npm which comes with Node.js
-or
-* [Yarn](https://yarnpkg.com/)
+or [Yarn](https://yarnpkg.com/)
 * [Serverless](https://www.serverless.com/)
 
 ### Setup

@@ -13,15 +13,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 450px;
-  width: 400px;
+  height: 400px;
+  width: 360px;
   background: #FFFFFF;
   border-radius: 6px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);;
 }
 
 .Form > p {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: #2D3748
 }
@@ -32,24 +32,48 @@
 
 .File-container {
   width: 200px;
-  height: 220px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #333
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  transition: border 0.3s;
+}
+
+.File-container:hover {
+  border: 1px solid #CBD5E0;
+}
+
+.File-container > p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #718096;
+  text-align: center;
 }
 
 #Plus-icon {
-  width: 40px;
-  height: 40px;
- }
+  width: 44px;
+  height: 44px;
+  margin-bottom: 30px;
+}
 
 #Upload-input {
   display: none
 }
 
-.Footer {
-  margin-top: 30px;
+.Footer > button {
+  background: #61B15A;
+  padding: 10px 20px;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: capitalize;
+  transition: background 0.3s;
+}
+
+.Footer > button:hover {
+  background: #579f51;
 }
 
